@@ -1,7 +1,8 @@
-const express = require('express');
+ const express = require('express');
 const connectDB = require('./config/db');
 var bodyParser = require('body-parser');  
 const cors = require("cors"); 
+var path = require('path');
 
 const app = express();
 
@@ -25,7 +26,15 @@ app.use('/api/subtopics', require('./routes/subtopics'));
 app.use('/api/references', require('./routes/references'));
 app.use('/api/gallerys', require('./routes/gallerys'));
 
+//--------------------------------DIFFERENT DUDES
 
+app.get('*', (req, res) => {
+ 
+	res.sendFile(path.join(__dirname, 'public/index.html'));
+	
+});
+
+//-----------------------
 
 
 connectDB();

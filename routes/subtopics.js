@@ -28,6 +28,18 @@ router.get('/:articleid', async (req, res) => {
   }
 });
 
+router.get('/sub/:subtopicid', async (req, res) => {
+  try {
+   const subtopic = await Subtopic.findById(req.params.subtopicid);
+  if (!subtopic) return res.status(404).json({ msg: 'Subtopic not found' });
+res.json(subtopic);
+	
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
+
 //POST subtopic
 router.post(
   '/:articleid',

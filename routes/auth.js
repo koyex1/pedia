@@ -31,34 +31,30 @@ router.post(
       let user = await User.findOne({ email });
 
       if (!user) {
-        return res.status(400).json({ msg: 'Invalid Credentials' });
+        return res.json({ msg: 'Invalid email' });
       }
 		
 		//decrypts password and compares with provide password
       const isMatch = await bcrypt.compare(password, user.password);
 
       if (!isMatch) {
-        return res.status(400).json({ msg: 'Invalid Credentials' });
+        return res.json({ msg: 'Invalid Password' });
       }
 
       const payload = {
         user: {
           id: user.id,
+		  name:user.name,
         },
       };
 
 	  //on signin a jwtoken is generated which is verified 
 	  //during every request post url,auth,async
 	  //CREATE & SEND token
-      jwt.sign(
-        payload,
-        config.get('jwtSecret'),
-        {
-          expiresIn: 360000,
-        },
-        (err, token) => {
+jwt.sign(payload, config.get('jwtSecret'),{expiresIn: 360000,},(err, token) => {
           if (err) throw err;
-          res.json({ token });
+          res.json({ token: token ,
+					 user: payload.user});
         }
       );
     } catch (err) {

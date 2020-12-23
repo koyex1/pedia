@@ -34,7 +34,8 @@ router.post(
       let user = await User.findOne({ email });
 
       if (user) {
-        return res.status(400).json({ msg: 'User already exists' });
+        return res.json({ type: 'exist',
+										msg: 'User already exists' });
       }
 	
 	//place body contents in model
@@ -60,21 +61,17 @@ router.post(
       };
 //jwt.sign(payload, config, {},()=>)
 //automatic login after page reason for signing token
-      jwt.sign(
-        payload,
-        config.get('jwtSecret'),
-        {
-          expiresIn: 360000,
-        },
-        (err, token) => {
-          if (err) throw err;
-          res.json({ token });
-        }
-      );
+      
+	  res.json({	  type: 'success',
+					  msg: 'User registered'
+		  });
+	  
     } catch (err) {
       console.error(err.message);
 	  //send json({msg:'server error'})
-      res.status(500).send('Server Error');
+      res.status(500).send({
+	  type: 'server',
+	  msg: 'Server Error'});
     }
   }
 );
