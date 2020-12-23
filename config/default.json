@@ -1,5 +1,6 @@
 
 {
-  "mongoURI": "mongodb://localhost:27017/pedia",
+  "development": "mongodb://localhost:27017/pedia",
+  "mongoURI": "mongodb+srv://admin:admin@cluster0.u8efw.mongodb.net/<dbname>?retryWrites=true&w=majority",
   "jwtSecret": "secret@007"
 }
