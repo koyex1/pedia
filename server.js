@@ -6,11 +6,7 @@ var path = require('path');
 
 const app = express();
 
-var corsOptions = {
-  origin: "http://localhost:4200"
-};
-
-app.use(cors(corsOptions));
+app.use(cors());
 
 
 app.use(bodyParser.json()); // for parsing application/json
