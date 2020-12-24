@@ -34,8 +34,7 @@ router.post(
       let user = await User.findOne({ email });
 
       if (user) {
-        return res.json({ type: 'exist',
-										msg: 'User already exists' });
+        return res.json({msg: 'exist' });
       }
 	
 	//place body contents in model
@@ -62,9 +61,7 @@ router.post(
 //jwt.sign(payload, config, {},()=>)
 //automatic login after page reason for signing token
       
-	  res.json({	  type: 'success',
-					  msg: 'User registered'
-		  });
+	  res.json({ msg: 'success'});
 	  
     } catch (err) {
       console.error(err.message);

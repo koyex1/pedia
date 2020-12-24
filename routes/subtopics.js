@@ -99,9 +99,11 @@ router.put('/:id', async (req, res) => {
       req.params.id,
       { $set: subtopicFields },
       { new: true }
-    );
+    ).populate("article").then( data=> {
+	res.json(data);}
+	);
 
-    res.json(subtopic);
+    
   } catch (err) {
     console.error(er.message);
     res.status(500).send('Server Error');

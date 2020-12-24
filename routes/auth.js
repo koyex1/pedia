@@ -15,15 +15,15 @@ const User = require('../models/User');
 // @access  Public
 router.post(
   '/',
-  [
-    body('email', 'Please include a valid email').isEmail(),
-    body('password', 'Password is required').exists(),
-  ],
+  //[
+   // body('email', 'Please include a valid email').isEmail(),
+   // body('password', 'Password is required').exists(),
+  //],
   async (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
+    //const errors = validationResult(req);
+    //if (!errors.isEmpty()) {
+    //  return res.status(400).json({ errors: errors.array() });
+    //}
 
     const { email, password } = req.body;
 

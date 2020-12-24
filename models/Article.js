@@ -2,7 +2,10 @@
 const mongoose = require('mongoose');
 
 const ArticleSchema = mongoose.Schema({
-
+subtopic:{
+  type: mongoose.Schema.Types.ObjectId,
+    ref: 'subtopic',
+  },
   title: {
     type: String,
     required: false,
